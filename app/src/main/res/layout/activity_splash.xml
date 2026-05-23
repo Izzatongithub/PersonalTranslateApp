@@ -1,99 +1,136 @@
 <?xml version="1.0" encoding="utf-8"?>
-<?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white">
+    android:background="@drawable/bg_screen_gradient"
+    tools:context="com.example.translateapp.ui.SplashActivity">
 
-    <!-- Background Circle Top Right -->
     <View
-        android:id="@+id/topCircle"
-        android:layout_width="260dp"
-        android:layout_height="260dp"
+        android:id="@+id/topLeftOrnament"
+        android:layout_width="280dp"
+        android:layout_height="280dp"
         android:background="@drawable/bg_gradient_circle"
         android:alpha="0.25"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:translationX="80dp"
-        android:translationY="-60dp"/>
+        app:layout_constraintStart_toStartOf="parent"
+        android:translationX="-100dp"
+        android:translationY="-80dp"/>
 
-    <!-- Background Circle Bottom Left -->
     <View
+        android:id="@+id/rightCenterOrnament"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:background="@drawable/bg_gradient_circle"
+        android:backgroundTint="@color/neon_cyan"
+        android:alpha="0.15"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:translationX="40dp"/>
+
+    <View
+        android:id="@+id/bottomLeftOrnament"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:background="@drawable/bg_gradient_circle"
+        android:backgroundTint="@color/neon_purple"
+        android:alpha="0.20"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:translationX="-60dp"
+        android:translationY="60dp"/>
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/logoGuideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.45" />
+
+    <View
+        android:id="@+id/logoGlow"
         android:layout_width="220dp"
         android:layout_height="220dp"
         android:background="@drawable/bg_gradient_circle"
-        android:alpha="0.18"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:alpha="0.40"
+        app:layout_constraintBottom_toTopOf="@id/logoGuideline"
+        app:layout_constraintTop_toTopOf="@id/logoGuideline"
         app:layout_constraintStart_toStartOf="parent"
-        android:translationX="-90dp"
-        android:translationY="80dp"/>
+        app:layout_constraintEnd_toEndOf="parent"/>
 
-    <!-- App Title -->
+    <ImageView
+        android:id="@+id/imgSplash"
+        android:layout_width="140dp"
+        android:layout_height="140dp"
+        android:src="@drawable/logo_pertalite"
+        android:scaleType="fitCenter"
+        android:elevation="8dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/logoGuideline"
+        app:layout_constraintBottom_toBottomOf="@id/logoGuideline"/>
+
     <TextView
         android:id="@+id/txtTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="PertaLite"
-        android:textSize="34sp"
+        android:textSize="38sp"
         android:textStyle="bold"
-        android:textColor="#1E1E1E"
+        android:textColor="@color/pure_white"
         android:fontFamily="sans-serif-black"
-        app:layout_constraintTop_toTopOf="parent"
+        android:letterSpacing="0.04"
+        android:layout_marginTop="32dp"
+        app:layout_constraintTop_toBottomOf="@id/imgSplash"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="110dp"/>
+        app:layout_constraintEnd_toEndOf="parent"/>
 
-    <!-- Purple Blob -->
-    <View
-        android:id="@+id/blob"
-        android:layout_width="220dp"
-        android:layout_height="220dp"
-        android:background="@drawable/bg_gradient_circle"
+    <TextView
+        android:id="@+id/txtSubtitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Translate simpler, connect faster"
+        android:textSize="14sp"
+        android:textColor="@color/neon_cyan"
+        android:fontFamily="sans-serif-medium"
+        android:letterSpacing="0.02"
+        android:layout_marginTop="8dp"
         app:layout_constraintTop_toBottomOf="@id/txtTitle"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="50dp"/>
+        app:layout_constraintEnd_toEndOf="parent"/>
 
-    <!-- Illustration -->
-    <ImageView
-        android:id="@+id/imgSplash"
-        android:layout_width="230dp"
-        android:layout_height="230dp"
-        android:src="@drawable/ic_store"
-        android:scaleType="fitCenter"
-        app:layout_constraintTop_toTopOf="@id/blob"
-        app:layout_constraintBottom_toBottomOf="@id/blob"
-        app:layout_constraintStart_toStartOf="@id/blob"
-        app:layout_constraintEnd_toEndOf="@id/blob"/>
-
-    <!-- Indicator -->
     <LinearLayout
+        android:id="@+id/indicatorContainer"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintTop_toBottomOf="@id/blob"
+        android:layout_marginBottom="64dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="60dp">
+        app:layout_constraintEnd_toEndOf="parent">
 
         <View
-            android:layout_width="12dp"
-            android:layout_height="12dp"
-            android:background="@drawable/dot_active"/>
+            android:layout_width="26dp"
+            android:layout_height="6dp"
+            android:background="@drawable/dot_active"
+            android:backgroundTint="@color/neon_cyan"/>
 
         <View
-            android:layout_width="12dp"
-            android:layout_height="12dp"
-            android:layout_marginStart="8dp"
-            android:background="@drawable/dot_inactive"/>
+            android:layout_width="6dp"
+            android:layout_height="6dp"
+            android:layout_marginStart="6dp"
+            android:background="@drawable/dot_inactive"
+            android:backgroundTint="@color/translucent_white"/>
 
         <View
-            android:layout_width="12dp"
-            android:layout_height="12dp"
-            android:layout_marginStart="8dp"
-            android:background="@drawable/dot_inactive"/>
+            android:layout_width="6dp"
+            android:layout_height="6dp"
+            android:layout_marginStart="6dp"
+            android:background="@drawable/dot_inactive"
+            android:backgroundTint="@color/translucent_white"/>
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
