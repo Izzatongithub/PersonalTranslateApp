@@ -1,6 +1,99 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-             android:layout_width="match_parent"
-             android:layout_height="match_parent">
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white">
+
+    <!-- Background Circle Top Right -->
+    <View
+        android:id="@+id/topCircle"
+        android:layout_width="260dp"
+        android:layout_height="260dp"
+        android:background="@drawable/bg_gradient_circle"
+        android:alpha="0.25"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:translationX="80dp"
+        android:translationY="-60dp"/>
+
+    <!-- Background Circle Bottom Left -->
+    <View
+        android:layout_width="220dp"
+        android:layout_height="220dp"
+        android:background="@drawable/bg_gradient_circle"
+        android:alpha="0.18"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:translationX="-90dp"
+        android:translationY="80dp"/>
+
+    <!-- App Title -->
+    <TextView
+        android:id="@+id/txtTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="PertaLite"
+        android:textSize="34sp"
+        android:textStyle="bold"
+        android:textColor="#1E1E1E"
+        android:fontFamily="sans-serif-black"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="110dp"/>
+
+    <!-- Purple Blob -->
+    <View
+        android:id="@+id/blob"
+        android:layout_width="220dp"
+        android:layout_height="220dp"
+        android:background="@drawable/bg_gradient_circle"
+        app:layout_constraintTop_toBottomOf="@id/txtTitle"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="50dp"/>
+
+    <!-- Illustration -->
+    <ImageView
+        android:id="@+id/imgSplash"
+        android:layout_width="230dp"
+        android:layout_height="230dp"
+        android:src="@drawable/ic_store"
+        android:scaleType="fitCenter"
+        app:layout_constraintTop_toTopOf="@id/blob"
+        app:layout_constraintBottom_toBottomOf="@id/blob"
+        app:layout_constraintStart_toStartOf="@id/blob"
+        app:layout_constraintEnd_toEndOf="@id/blob"/>
+
+    <!-- Indicator -->
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintTop_toBottomOf="@id/blob"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="60dp">
+
+        <View
+            android:layout_width="12dp"
+            android:layout_height="12dp"
+            android:background="@drawable/dot_active"/>
+
+        <View
+            android:layout_width="12dp"
+            android:layout_height="12dp"
+            android:layout_marginStart="8dp"
+            android:background="@drawable/dot_inactive"/>
+
+        <View
+            android:layout_width="12dp"
+            android:layout_height="12dp"
+            android:layout_marginStart="8dp"
+            android:background="@drawable/dot_inactive"/>
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
