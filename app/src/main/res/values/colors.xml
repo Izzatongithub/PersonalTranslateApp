@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="purple_primary">#7B2FF7</color>
-    <color name="purple_secondary">#B06CFF</color>
-    <color name="purple_light">#E9D8FF</color>
-    <color name="white">#FFFFFF</color>
-    <color name="gray_dot">#D9D9D9</color>
+    <color name="bg_dark_gradient_start">#110B29</color>
+    <color name="bg_dark_gradient_end">#0A0618</color>
+
+    <color name="neon_purple">#9D4EDD</color>
+    <color name="neon_pink">#FF007F</color>
+    <color name="neon_cyan">#00F5D4</color>
+    <color name="pure_white">#FFFFFF</color>
+    <color name="translucent_white">#4DFFFFFF</color>
 </resources>

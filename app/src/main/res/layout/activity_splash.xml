@@ -1,99 +1,92 @@
 <?xml version="1.0" encoding="utf-8"?>
-<?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white">
+    android:background="@drawable/bg_splash_meoww"
+    tools:context="com.example.translateapp.ui.SplashActivity">
 
-    <!-- Background Circle Top Right -->
-    <View
-        android:id="@+id/topCircle"
-        android:layout_width="260dp"
-        android:layout_height="260dp"
-        android:background="@drawable/bg_gradient_circle"
-        android:alpha="0.25"
-        app:layout_constraintTop_toTopOf="parent"
+
+
+    <ImageView
+        android:id="@+id/imgPawcabularyTitle"
+        android:layout_width="358dp"
+        android:layout_height="345dp"
+        android:layout_marginTop="32dp"
+        android:adjustViewBounds="true"
+        android:src="@drawable/title_pawcabulary"
         app:layout_constraintEnd_toEndOf="parent"
-        android:translationX="80dp"
-        android:translationY="-60dp"/>
+        app:layout_constraintHorizontal_bias="0.49"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-    <!-- Background Circle Bottom Left -->
     <View
-        android:layout_width="220dp"
-        android:layout_height="220dp"
+        android:id="@+id/circleBackground1"
+        android:layout_width="300dp"
+        android:layout_height="300dp"
         android:background="@drawable/bg_gradient_circle"
-        android:alpha="0.18"
+        android:alpha="0.15"
+        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        android:translationX="-90dp"
-        android:translationY="80dp"/>
+        app:layout_constraintEnd_toEndOf="parent" />
 
-    <!-- App Title -->
-    <TextView
-        android:id="@+id/txtTitle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="PertaLite"
-        android:textSize="34sp"
-        android:textStyle="bold"
-        android:textColor="#1E1E1E"
-        android:fontFamily="sans-serif-black"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="110dp"/>
-
-    <!-- Purple Blob -->
     <View
-        android:id="@+id/blob"
-        android:layout_width="220dp"
-        android:layout_height="220dp"
-        android:background="@drawable/bg_gradient_circle"
-        app:layout_constraintTop_toBottomOf="@id/txtTitle"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="50dp"/>
-
-    <!-- Illustration -->
-    <ImageView
-        android:id="@+id/imgSplash"
+        android:id="@+id/circleBackground2"
         android:layout_width="230dp"
         android:layout_height="230dp"
-        android:src="@drawable/ic_store"
-        android:scaleType="fitCenter"
-        app:layout_constraintTop_toTopOf="@id/blob"
-        app:layout_constraintBottom_toBottomOf="@id/blob"
-        app:layout_constraintStart_toStartOf="@id/blob"
-        app:layout_constraintEnd_toEndOf="@id/blob"/>
+        android:background="@drawable/bg_gradient_circle"
+        android:alpha="0.3"
+        app:layout_constraintTop_toTopOf="@id/circleBackground1"
+        app:layout_constraintBottom_toBottomOf="@id/circleBackground1"
+        app:layout_constraintStart_toStartOf="@id/circleBackground1"
+        app:layout_constraintEnd_toEndOf="@id/circleBackground1"/>
 
-    <!-- Indicator -->
+    <ImageView
+        android:id="@+id/imgMascot"
+        android:layout_width="317dp"
+        android:layout_height="498dp"
+        android:elevation="6dp"
+        android:scaleType="fitCenter"
+        android:src="@drawable/ic_cat_mascot"
+        app:layout_constraintBottom_toBottomOf="@id/circleBackground2"
+        app:layout_constraintEnd_toEndOf="@id/circleBackground2"
+        app:layout_constraintHorizontal_bias="0.425"
+        app:layout_constraintStart_toStartOf="@id/circleBackground2"
+        app:layout_constraintTop_toTopOf="@id/circleBackground2"
+        app:layout_constraintVertical_bias="0.444" />
+
     <LinearLayout
+        android:id="@+id/indicatorContainer"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintTop_toBottomOf="@id/blob"
+        android:layout_marginBottom="48dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="60dp">
+        app:layout_constraintEnd_toEndOf="parent">
 
         <View
-            android:layout_width="12dp"
-            android:layout_height="12dp"
-            android:background="@drawable/dot_active"/>
+            android:layout_width="24dp"
+            android:layout_height="8dp"
+            android:background="@drawable/dot_active"
+            android:backgroundTint="#EDEBF0" />
 
         <View
-            android:layout_width="12dp"
-            android:layout_height="12dp"
+            android:layout_width="8dp"
+            android:layout_height="8dp"
             android:layout_marginStart="8dp"
-            android:background="@drawable/dot_inactive"/>
+            android:background="@drawable/dot_inactive"
+            android:backgroundTint="#667B2FF7"/>
 
         <View
-            android:layout_width="12dp"
-            android:layout_height="12dp"
+            android:layout_width="8dp"
+            android:layout_height="8dp"
             android:layout_marginStart="8dp"
-            android:background="@drawable/dot_inactive"/>
+            android:background="@drawable/dot_inactive"
+            android:backgroundTint="#667B2FF7"/>
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
