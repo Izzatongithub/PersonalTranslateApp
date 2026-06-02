@@ -12,7 +12,10 @@ constraintlayout = "2.2.1"
 retrofit = "2.9.0"
 gsonConverter = "2.9.0"
 mlkitTranslate = "17.0.3"
-uiText = "1.11.1"
+uiText = "1.7.5"
+room = "2.7.0-alpha11"
+kotlin = "2.0.21"
+ksp = "2.0.21-1.0.27"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -30,6 +33,10 @@ gson-converter = { module = "com.squareup.retrofit2:converter-gson", version.ref
 mlkit-translate = { module = "com.google.mlkit:translate", version.ref = "mlkitTranslate" }
 androidx-ui-text = { group = "androidx.compose.ui", name = "ui-text", version.ref = "uiText" }
 
+room-runtime = { group = "androidx.room", name = "room-runtime", version.ref = "room" }
+room-compiler = { group = "androidx.room", name = "room-compiler", version.ref = "room" }
+room-ktx = { group = "androidx.room", name = "room-ktx", version.ref = "room" }
+
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
-
+ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }

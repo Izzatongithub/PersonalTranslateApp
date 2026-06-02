@@ -27,6 +27,12 @@
             android:name="com.example.translateapp.MainActivity"
             android:exported="false" />
 
+        <activity
+            android:name="com.example.translateapp.ui.HistoryActivity"
+            android:exported="false"
+            android:label="History"
+            android:parentActivityName="com.example.translateapp.MainActivity" />
+
     </application>
 
 </manifest>
