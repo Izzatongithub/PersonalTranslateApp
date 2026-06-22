@@ -14,7 +14,10 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import com.example.translateapp.data.AppDatabase
+import com.example.translateapp.data.FavoriteDao
+import com.example.translateapp.model.FavoriteEntity
 import com.example.translateapp.model.HistoryEntity
+import com.example.translateapp.ui.FavoriteAdapter
 import com.example.translateapp.ui.HistoryActivity
 import com.google.mlkit.nl.translate.TranslateLanguage
 import com.google.mlkit.nl.translate.Translation
@@ -26,6 +29,9 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var textToSpeech: TextToSpeech
     private lateinit var database: AppDatabase
+
+    private lateinit var favoriteDao: FavoriteDao
+    private lateinit var favoriteAdapter: FavoriteAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -103,7 +109,17 @@ class MainActivity : AppCompatActivity() {
         }
 
         btnFavorite.setOnClickListener {
-            Toast.makeText(this, "Ditambahkan ke Favorit!", Toast.LENGTH_SHORT).show()
+            lifecycleScope.launch {
+                database.favoriteDao().insertFavorite(
+                    FavoriteEntity(
+                        sourceText = etInput.text.toString(),
+                        translatedText = tvResult.text.toString(),
+                        sourceLang = "ID",
+                        targetLang = "EN"
+                    )
+                )
+                Toast.makeText(this@MainActivity, "Teks berhasil ditambahkan ke favorit!", Toast.LENGTH_SHORT).show()
+            }
         }
     }
 
