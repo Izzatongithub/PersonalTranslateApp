@@ -13,26 +13,26 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.TranslateApp">
-
         <activity
-            android:name="com.example.translateapp.ui.SplashActivity"
+            android:name=".ui.FavoriteActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.SplashActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity
-            android:name="com.example.translateapp.MainActivity"
+            android:name=".MainActivity"
             android:exported="false" />
-
         <activity
-            android:name="com.example.translateapp.ui.HistoryActivity"
+            android:name=".ui.HistoryActivity"
             android:exported="false"
             android:label="History"
-            android:parentActivityName="com.example.translateapp.MainActivity" />
-
+            android:parentActivityName=".MainActivity" />
     </application>
 
 </manifest>
