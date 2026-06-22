@@ -35,6 +35,19 @@
         app:layout_constraintTop_toTopOf="parent"
         app:tint="#66368a" />
 
+    <ImageView
+        android:id="@+id/btnOpenDictionary"
+        android:layout_width="52dp"
+        android:layout_height="53dp"
+        android:layout_marginTop="16dp"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:contentDescription="Buka Smart Dictionary"
+        android:padding="8dp"
+        android:src="@android:drawable/ic_menu_agenda"
+        app:layout_constraintEnd_toStartOf="@id/btnOpenHistory"
+        app:layout_constraintTop_toTopOf="parent"
+        app:tint="#66368a" />
+
     <LinearLayout
         android:id="@+id/boxInputContainer"
         android:layout_width="match_parent"

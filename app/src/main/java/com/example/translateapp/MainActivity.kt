@@ -15,6 +15,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import com.example.translateapp.data.AppDatabase
 import com.example.translateapp.model.HistoryEntity
+import com.example.translateapp.ui.DictionaryActivity
 import com.example.translateapp.ui.HistoryActivity
 import com.google.mlkit.nl.translate.TranslateLanguage
 import com.google.mlkit.nl.translate.Translation
@@ -41,6 +42,7 @@ class MainActivity : AppCompatActivity() {
         val btnCopy = findViewById<ImageView>(R.id.btnCopy)
         val btnFavorite = findViewById<ImageView>(R.id.btnFavorite)
         val btnOpenHistory = findViewById<ImageView>(R.id.btnOpenHistory)
+        val btnOpenDictionary = findViewById<ImageView>(R.id.btnOpenDictionary)
 
         textToSpeech = TextToSpeech(this) { status ->
             if (status == TextToSpeech.SUCCESS) {
@@ -50,6 +52,10 @@ class MainActivity : AppCompatActivity() {
 
         btnOpenHistory.setOnClickListener {
             startActivity(Intent(this, HistoryActivity::class.java))
+        }
+
+        btnOpenDictionary.setOnClickListener {
+            startActivity(Intent(this, DictionaryActivity::class.java))
         }
 
         btnTranslate.setOnClickListener {
