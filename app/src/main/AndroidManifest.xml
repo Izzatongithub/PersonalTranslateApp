@@ -32,7 +32,14 @@
             android:name=".ui.HistoryActivity"
             android:exported="false"
             android:label="History"
-            android:parentActivityName=".MainActivity" />
+            android:parentActivityName="com.example.translateapp.MainActivity" />
+
+        <activity
+            android:name="com.example.translateapp.ui.DictionaryActivity"
+            android:exported="false"
+            android:label="Smart Dictionary"
+            android:parentActivityName="com.example.translateapp.MainActivity" />
+
     </application>
 
 </manifest>
