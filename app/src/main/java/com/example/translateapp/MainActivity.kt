@@ -18,6 +18,7 @@ import com.example.translateapp.data.FavoriteDao
 import com.example.translateapp.model.FavoriteEntity
 import com.example.translateapp.model.HistoryEntity
 import com.example.translateapp.ui.FavoriteActivity
+import com.example.translateapp.ui.DictionaryActivity
 import com.example.translateapp.ui.FavoriteAdapter
 import com.example.translateapp.ui.HistoryActivity
 import com.google.mlkit.nl.translate.TranslateLanguage
@@ -47,6 +48,7 @@ class MainActivity : AppCompatActivity() {
         val btnCopy = findViewById<ImageView>(R.id.btnCopy)
         val btnFavorite = findViewById<ImageView>(R.id.btnFavorite)
         val btnOpenHistory = findViewById<ImageView>(R.id.btnOpenHistory)
+        val btnOpenDictionary = findViewById<ImageView>(R.id.btnOpenDictionary)
 
         val btnFavoriteDua = findViewById<ImageView>(R.id.btnFavoriteDua)
         isFavorite = false
@@ -59,6 +61,10 @@ class MainActivity : AppCompatActivity() {
 
         btnOpenHistory.setOnClickListener {
             startActivity(Intent(this, HistoryActivity::class.java))
+        }
+
+        btnOpenDictionary.setOnClickListener {
+            startActivity(Intent(this, DictionaryActivity::class.java))
         }
 
         btnTranslate.setOnClickListener {
