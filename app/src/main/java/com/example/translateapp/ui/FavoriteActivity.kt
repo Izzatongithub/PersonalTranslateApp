@@ -39,7 +39,7 @@ class FavoriteActivity : AppCompatActivity() {
         val rvFavorite = findViewById<RecyclerView>(R.id.rvFavorite)
         adapter = FavoriteAdapter { favorite ->
             lifecycleScope.launch {
-                database.favoriteDao().deleteFavorite(favorite)
+                database.favoriteDao().deleteFavoriteById(favorite.idFavorite)
             }
         }
         rvFavorite.layoutManager = LinearLayoutManager(this)

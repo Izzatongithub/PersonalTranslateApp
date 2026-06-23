@@ -6,7 +6,7 @@ import androidx.room.PrimaryKey
 @Entity(tableName = "translation_favorites")
 data class FavoriteEntity(
     @PrimaryKey(autoGenerate = true)
-    val idFavorite: Int = 0,
+    val idFavorite: Long = 0,
     val sourceText: String,
     val translatedText: String,
     val sourceLang: String,
