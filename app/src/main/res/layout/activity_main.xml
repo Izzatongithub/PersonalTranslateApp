@@ -115,7 +115,7 @@
                 android:id="@+id/tvResult"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Hasil terjemahan teks akan muncul di sini..."
+                android:hint="Hasil terjemahan teks akan muncul di sini..."
                 android:textColor="#374151"
                 android:textSize="16sp"
                 android:lineSpacingExtra="4dp"
@@ -155,11 +155,11 @@
                 android:layout_width="32dp"
                 android:layout_height="32dp"
                 android:layout_marginStart="12dp"
-                android:src="@drawable/ic_favorite"
-                app:tint="#F43F5E"
+                android:src="@drawable/ic_favorites_new"
                 android:padding="6dp"
                 android:background="?attr/selectableItemBackgroundBorderless"
                 android:contentDescription="Favorite Text" />
+
         </LinearLayout>
     </LinearLayout>
 

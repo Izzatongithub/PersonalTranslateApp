@@ -14,9 +14,6 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.TranslateApp">
         <activity
-            android:name=".ui.FavoriteActivity"
-            android:exported="false" />
-        <activity
             android:name=".ui.SplashActivity"
             android:exported="true">
             <intent-filter>
@@ -28,6 +25,11 @@
         <activity
             android:name=".MainActivity"
             android:exported="false" />
+
+        <activity
+            android:name=".ui.FavoriteActivity"
+            android:exported="false" />
+
         <activity
             android:name=".ui.HistoryActivity"
             android:exported="false"

@@ -11,7 +11,7 @@ import com.example.translateapp.model.FavoriteEntity
 
 class FavoriteAdapter(
     private val onDeleteClick: (FavoriteEntity) -> Unit
-) : RecyclerView.Adapter<FavoriteAdapter.ViewHolder>() {
+    ) : RecyclerView.Adapter<FavoriteAdapter.ViewHolder>() {
 
     private var list = listOf<FavoriteEntity>()
 

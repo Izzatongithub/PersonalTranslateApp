@@ -17,6 +17,7 @@ import com.example.translateapp.data.AppDatabase
 import com.example.translateapp.data.FavoriteDao
 import com.example.translateapp.model.FavoriteEntity
 import com.example.translateapp.model.HistoryEntity
+import com.example.translateapp.ui.FavoriteActivity
 import com.example.translateapp.ui.FavoriteAdapter
 import com.example.translateapp.ui.HistoryActivity
 import com.google.mlkit.nl.translate.TranslateLanguage
@@ -29,9 +30,8 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var textToSpeech: TextToSpeech
     private lateinit var database: AppDatabase
-
-    private lateinit var favoriteDao: FavoriteDao
-    private lateinit var favoriteAdapter: FavoriteAdapter
+    private var isFavorite = false
+    private var currentFavorite: FavoriteEntity? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -47,6 +47,9 @@ class MainActivity : AppCompatActivity() {
         val btnCopy = findViewById<ImageView>(R.id.btnCopy)
         val btnFavorite = findViewById<ImageView>(R.id.btnFavorite)
         val btnOpenHistory = findViewById<ImageView>(R.id.btnOpenHistory)
+
+        val btnFavoriteDua = findViewById<ImageView>(R.id.btnFavoriteDua)
+        isFavorite = false
 
         textToSpeech = TextToSpeech(this) { status ->
             if (status == TextToSpeech.SUCCESS) {
@@ -109,16 +112,53 @@ class MainActivity : AppCompatActivity() {
         }
 
         btnFavorite.setOnClickListener {
-            lifecycleScope.launch {
-                database.favoriteDao().insertFavorite(
-                    FavoriteEntity(
-                        sourceText = etInput.text.toString(),
-                        translatedText = tvResult.text.toString(),
+
+            val source = etInput.text.toString()
+            val result = tvResult.text.toString()
+
+            if (!isFavorite) {
+
+                if (result.isEmpty()) {
+                    Toast.makeText(this, "Tidak ada hasil untuk difavoritkan", Toast.LENGTH_SHORT).show()
+                    return@setOnClickListener
+                }
+
+                lifecycleScope.launch {
+                    val id = database.favoriteDao().insertFavorite(
+                        FavoriteEntity(
+                            sourceText = source,
+                            translatedText = result,
+                            sourceLang = "ID",
+                            targetLang = "EN"
+                        )
+                    )
+
+                    currentFavorite = FavoriteEntity(
+                        idFavorite = id,
+                        sourceText = source,
+                        translatedText = result,
                         sourceLang = "ID",
                         targetLang = "EN"
                     )
-                )
-                Toast.makeText(this@MainActivity, "Teks berhasil ditambahkan ke favorit!", Toast.LENGTH_SHORT).show()
+
+                    isFavorite = true
+                    btnFavorite.setImageResource(R.drawable.ic_favorite_red)
+
+                    Toast.makeText(this@MainActivity, "Ditambahkan ke favorit", Toast.LENGTH_SHORT).show()
+                }
+
+            } else {
+
+                lifecycleScope.launch {
+                    currentFavorite?.idFavorite?.let { id ->
+                        database.favoriteDao().deleteFavoriteById(id)
+                    }
+
+                    isFavorite = false
+                    btnFavorite.setImageResource(R.drawable.ic_favorites_new)
+
+                    Toast.makeText(this@MainActivity, "Dihapus dari favorit", Toast.LENGTH_SHORT).show()
+                }
             }
         }
     }
