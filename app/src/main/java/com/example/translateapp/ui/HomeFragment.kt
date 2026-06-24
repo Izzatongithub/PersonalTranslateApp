@@ -71,8 +71,6 @@ class HomeFragment : Fragment() {
         val btnSpeak = view.findViewById<ImageView>(R.id.btnSpeak)
         val btnCopy = view.findViewById<ImageView>(R.id.btnCopy)
         val btnFavorite = view.findViewById<ImageView>(R.id.btnFavorite)
-        val btnOpenHistory = view.findViewById<ImageView>(R.id.btnOpenHistory)
-        val btnOpenDictionary = view.findViewById<ImageView>(R.id.btnOpenDictionary)
         val btnSwapLang = view.findViewById<ImageView>(R.id.btnSwapLang)
 
         val tvSourceLanguage = view.findViewById<TextView>(R.id.tvSourceLanguage)
