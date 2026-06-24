@@ -27,17 +27,17 @@
             android:exported="false" />
 
         <activity
-            android:name=".ui.FavoriteActivity"
+            android:name=".ui.FavoriteFragment"
             android:exported="false" />
 
         <activity
-            android:name=".ui.HistoryActivity"
+            android:name=".ui.HistoryFragment"
             android:exported="false"
             android:label="History"
             android:parentActivityName="com.example.translateapp.MainActivity" />
 
         <activity
-            android:name="com.example.translateapp.ui.DictionaryActivity"
+            android:name="com.example.translateapp.ui.DictionaryFragment"
             android:exported="false"
             android:label="Smart Dictionary"
             android:parentActivityName="com.example.translateapp.MainActivity" />

@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:background="#FFFFFF"
     android:padding="20dp"
-    tools:context=".ui.DictionaryActivity">
+    tools:context=".ui.DictionaryFragment">
 
     <!-- Toolbar sederhana, samain pola sama HistoryActivity -->
     <androidx.appcompat.widget.Toolbar
