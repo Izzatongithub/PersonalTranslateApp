@@ -50,7 +50,6 @@ class MainActivity : AppCompatActivity() {
         val btnOpenHistory = findViewById<ImageView>(R.id.btnOpenHistory)
         val btnOpenDictionary = findViewById<ImageView>(R.id.btnOpenDictionary)
 
-        val btnFavoriteDua = findViewById<ImageView>(R.id.btnFavoriteDua)
         isFavorite = false
 
         textToSpeech = TextToSpeech(this) { status ->
