@@ -9,11 +9,14 @@ import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.translateapp.MainActivity
 import com.example.translateapp.R
 import com.example.translateapp.data.AppDatabase
+import com.example.translateapp.model.SharedTranslationViewModel
 import kotlinx.coroutines.launch
 
 class HistoryFragment : Fragment() {
@@ -25,6 +28,8 @@ class HistoryFragment : Fragment() {
     private lateinit var rvHistory: RecyclerView
     private lateinit var btnClear: Button
     private lateinit var tvEmpty: TextView
+
+    private lateinit var sharedViewModel: SharedTranslationViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -47,6 +52,9 @@ class HistoryFragment : Fragment() {
         database = AppDatabase.getDatabase(requireContext())
 
         bindViews(view)
+        sharedViewModel =
+            ViewModelProvider(requireActivity())
+                .get(SharedTranslationViewModel::class.java)
 
         setupToolbar()
         setupRecyclerView()
@@ -77,7 +85,17 @@ class HistoryFragment : Fragment() {
     }
 
     private fun setupRecyclerView() {
-        adapter = HistoryAdapter()
+        adapter = HistoryAdapter { history ->
+
+            sharedViewModel.setTranslation(
+                history.sourceText,
+                history.translatedText,
+                history.sourceLang,
+                history.targetLang
+            )
+
+            (activity as MainActivity).selectHomeTab()
+        }
 
         rvHistory.layoutManager =
             LinearLayoutManager(requireContext())

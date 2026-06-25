@@ -10,7 +10,11 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.translateapp.R
 import com.example.translateapp.model.HistoryEntity
 
-class HistoryAdapter : ListAdapter<HistoryEntity, HistoryAdapter.HistoryViewHolder>(HistoryDiffCallback()) {
+class HistoryAdapter(
+            private val onItemClick: (HistoryEntity) -> Unit
+    ) : ListAdapter<HistoryEntity, HistoryAdapter.HistoryViewHolder>(
+            HistoryDiffCallback()
+    ) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HistoryViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.item_history, parent, false)
@@ -18,7 +22,14 @@ class HistoryAdapter : ListAdapter<HistoryEntity, HistoryAdapter.HistoryViewHold
     }
 
     override fun onBindViewHolder(holder: HistoryViewHolder, position: Int) {
-        holder.bind(getItem(position))
+
+        val history = getItem(position)
+
+        holder.bind(history)
+
+        holder.itemView.setOnClickListener {
+            onItemClick(history)
+        }
     }
 
     class HistoryViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {

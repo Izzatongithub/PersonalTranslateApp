@@ -28,6 +28,11 @@ class MainActivity : AppCompatActivity() {
             }
     }
 
+    fun selectHomeTab() {
+        findViewById<BottomNavigationView>(R.id.bottomNav)
+            .selectedItemId = R.id.homeFragment
+    }
+
     // Helper: ganti Fragment di dalam container
     private fun loadFragment(fragment: Fragment) {
         supportFragmentManager
