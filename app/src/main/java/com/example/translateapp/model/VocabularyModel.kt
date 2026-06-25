@@ -14,6 +14,7 @@ data class Phonetic(
 data class Meaning(
     val partOfSpeech: String? = null,
     val definitions: List<Definition>? = null,
+    val example: String? = null,
     val synonyms: List<String>? = null,
     val antonyms: List<String>? = null
 )

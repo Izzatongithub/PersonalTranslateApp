@@ -154,7 +154,7 @@
         android:id="@+id/boxResultContainer"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:minHeight="150dp"
+        android:minHeight="250dp"
         android:orientation="vertical"
         android:background="@drawable/bg_card_light"
         android:padding="16dp"
