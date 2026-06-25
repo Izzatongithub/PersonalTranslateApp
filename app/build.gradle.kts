@@ -53,9 +53,13 @@ dependencies {
     implementation(libs.retrofit)
     implementation(libs.gson.converter)
 
+    //dependecy translate
     implementation(libs.mlkit.translate)
 
     implementation(libs.room.runtime)
     implementation(libs.room.ktx)
     ksp(libs.room.compiler)
+
+    //dependency translate pake kamera
+    implementation("com.google.mlkit:text-recognition:16.0.1")
 }

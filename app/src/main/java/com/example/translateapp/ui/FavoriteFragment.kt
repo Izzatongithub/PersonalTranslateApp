@@ -14,6 +14,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.translateapp.R
 import com.example.translateapp.data.AppDatabase
 import kotlinx.coroutines.launch
+import androidx.lifecycle.ViewModelProvider
+import com.example.translateapp.MainActivity
+import com.example.translateapp.model.SharedTranslationViewModel
 
 class FavoriteFragment : Fragment() {
 
@@ -23,6 +26,7 @@ class FavoriteFragment : Fragment() {
     private lateinit var rvFavorite: RecyclerView
     private lateinit var tvEmpty: TextView
     private lateinit var toolbar: Toolbar
+    private lateinit var sharedViewModel: SharedTranslationViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -48,6 +52,12 @@ class FavoriteFragment : Fragment() {
         setupToolbar()
         setupRecyclerView()
         observeFavorite()
+
+        sharedViewModel =
+            ViewModelProvider(requireActivity())
+                .get(SharedTranslationViewModel::class.java)
+
+        observeFavorite()
     }
 
     private fun setupToolbar() {
@@ -66,12 +76,30 @@ class FavoriteFragment : Fragment() {
     }
 
     private fun setupRecyclerView() {
-        adapter = FavoriteAdapter { favorite ->
-            lifecycleScope.launch {
-                database.favoriteDao()
-                    .deleteFavoriteById(favorite.idFavorite)
+        adapter = FavoriteAdapter(
+
+            onDeleteClick = { favorite ->
+
+                lifecycleScope.launch {
+                    database.favoriteDao()
+                        .deleteFavoriteById(favorite.idFavorite)
+                }
+
+            },
+
+            onItemClick = { favorite ->
+
+                sharedViewModel.setTranslation(
+                    favorite.sourceText,
+                    favorite.translatedText,
+                    favorite.sourceLang,
+                    favorite.sourceText
+                )
+
+                // nanti pindah ke HomeFragment
+                (activity as MainActivity).selectHomeTab()
             }
-        }
+        )
 
         rvFavorite.layoutManager =
             LinearLayoutManager(requireContext())

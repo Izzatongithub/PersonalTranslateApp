@@ -10,7 +10,8 @@ import com.example.translateapp.R
 import com.example.translateapp.model.FavoriteEntity
 
 class FavoriteAdapter(
-    private val onDeleteClick: (FavoriteEntity) -> Unit
+    private val onDeleteClick: (FavoriteEntity) -> Unit,
+    private val onItemClick: (FavoriteEntity) -> Unit
     ) : RecyclerView.Adapter<FavoriteAdapter.ViewHolder>() {
 
     private var list = listOf<FavoriteEntity>()
@@ -68,6 +69,10 @@ class FavoriteAdapter(
 
         holder.btnDltFav.setOnClickListener {
             onDeleteClick(favorite)
+        }
+
+        holder.itemView.setOnClickListener {
+            onItemClick(favorite)
         }
     }
 
