@@ -30,8 +30,6 @@ class DictionaryFragment : Fragment() {
     private lateinit var tvDefinition: TextView
     private lateinit var tvExample: TextView
 
-    private lateinit var toolbar: Toolbar
-
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -51,7 +49,7 @@ class DictionaryFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         bindViews(view)
-        setupToolbar()
+
 
         btnSearch.setOnClickListener {
             val word = etWord.text.toString().trim()
@@ -68,23 +66,8 @@ class DictionaryFragment : Fragment() {
         }
     }
 
-    private fun setupToolbar() {
-        (requireActivity() as AppCompatActivity)
-            .setSupportActionBar(toolbar)
-
-        (requireActivity() as AppCompatActivity)
-            .supportActionBar
-            ?.setDisplayHomeAsUpEnabled(true)
-
-        toolbar.setNavigationOnClickListener {
-            requireActivity()
-                .onBackPressedDispatcher
-                .onBackPressed()
-        }
-    }
 
     private fun bindViews(view: View) {
-        toolbar = view.findViewById(R.id.toolbarDictionary)
 
         etWord = view.findViewById(R.id.etWord)
         btnSearch = view.findViewById(R.id.btnSearch)
@@ -132,12 +115,41 @@ class DictionaryFragment : Fragment() {
 
         tvPartOfSpeech.text = firstMeaning?.partOfSpeech ?: ""
 
-        tvDefinition.text =
-            firstDefinition?.definition
-                ?: "Definisi tidak ditemukan."
+        val definitionInEnglish = firstDefinition?.definition
+
+        if (!definitionInEnglish.isNullOrEmpty()) {
+
+            tvDefinition.text = "Menerjemahkan definisi..."
+
+
+            val options = com.google.mlkit.nl.translate.TranslatorOptions.Builder()
+                .setSourceLanguage(com.google.mlkit.nl.translate.TranslateLanguage.ENGLISH)
+                .setTargetLanguage(com.google.mlkit.nl.translate.TranslateLanguage.INDONESIAN)
+                .build()
+
+            val translator = com.google.mlkit.nl.translate.Translation.getClient(options)
+
+            translator.downloadModelIfNeeded()
+                .addOnSuccessListener {
+                    translator.translate(definitionInEnglish)
+                        .addOnSuccessListener { translatedDefinition ->
+
+                            tvDefinition.text = translatedDefinition
+                        }
+                        .addOnFailureListener {
+
+                            tvDefinition.text = definitionInEnglish
+                        }
+                }
+                .addOnFailureListener {
+                    tvDefinition.text = definitionInEnglish
+                }
+        } else {
+            tvDefinition.text = "Definisi tidak ditemukan."
+        }
+
 
         val example = firstDefinition?.example
-
         if (!example.isNullOrEmpty()) {
             tvExample.visibility = View.VISIBLE
             tvExample.text = "\"$example\""
@@ -146,13 +158,13 @@ class DictionaryFragment : Fragment() {
         }
     }
 
+
+
     private fun showNotFound() {
         tvWord.text = "Kata tidak ditemukan"
         tvPhonetic.text = ""
         tvPartOfSpeech.text = ""
-        tvDefinition.text =
-            "Coba periksa kembali ejaan kata yang dicari."
-
+        tvDefinition.text = "Coba periksa kembali ejaan kata bahasa Inggris yang kamu cari."
         tvExample.visibility = View.GONE
     }
 

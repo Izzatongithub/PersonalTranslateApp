@@ -153,6 +153,30 @@ class HomeFragment : Fragment() {
 
         observeTranslation()
 
+        val tvWordCount = view.findViewById<TextView>(R.id.tvWordCount)
+
+
+        etInput.addTextChangedListener(object : android.text.TextWatcher {
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
+
+            override fun afterTextChanged(s: android.text.Editable?) {
+                val text = s.toString().trim()
+                val wordCount = if (text.isEmpty()) 0 else text.split("\\s+".toRegex()).size
+
+
+                tvWordCount.text = "$wordCount/1500"
+
+                if (wordCount > 1500) {
+                    tvWordCount.setTextColor(android.graphics.Color.RED)
+                } else {
+                    tvWordCount.setTextColor(android.graphics.Color.parseColor("#9CA3AF"))
+                }
+            }
+        })
+
+//        isFavorite = false
+
         //Inisialisasi text to speech
         textToSpeech = TextToSpeech(requireContext()) { status ->
             if (targetLanguage == TranslateLanguage.ENGLISH) {
@@ -198,6 +222,14 @@ class HomeFragment : Fragment() {
 
         btnTranslate.setOnClickListener {
             val inputText = etInput.text.toString().trim()
+
+
+            val wordCount = if (inputText.isEmpty()) 0 else inputText.split("\\s+".toRegex()).size
+
+            if (wordCount > 1500) {
+                Toast.makeText(requireContext(), "Teks melebihi batas maksimal 1500 kata!", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
 
             if (inputText.isNotEmpty()) {
                 val options = TranslatorOptions.Builder()
