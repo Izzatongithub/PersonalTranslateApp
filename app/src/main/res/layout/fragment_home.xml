@@ -29,7 +29,7 @@
         android:layout_marginEnd="8dp"
         app:cardCornerRadius="28dp"
         app:cardElevation="4dp"
-        android:backgroundTint="#D3D3D3"
+        android:backgroundTint="#FFFFFF"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
