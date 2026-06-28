@@ -119,8 +119,7 @@ class DictionaryFragment : Fragment() {
 
         if (!definitionInEnglish.isNullOrEmpty()) {
 
-            tvDefinition.text = "Menerjemahkan definisi..."
-
+            tvDefinition.text = "English:\n$definitionInEnglish\n\nIndonesian:\nMenerjemahkan definisi..."
 
             val options = com.google.mlkit.nl.translate.TranslatorOptions.Builder()
                 .setSourceLanguage(com.google.mlkit.nl.translate.TranslateLanguage.ENGLISH)
@@ -134,25 +133,24 @@ class DictionaryFragment : Fragment() {
                     translator.translate(definitionInEnglish)
                         .addOnSuccessListener { translatedDefinition ->
 
-                            tvDefinition.text = translatedDefinition
+                            tvDefinition.text = "English:\n$definitionInEnglish\n\nIndonesian:\n$translatedDefinition"
                         }
                         .addOnFailureListener {
 
-                            tvDefinition.text = definitionInEnglish
+                            tvDefinition.text = "English:\n$definitionInEnglish"
                         }
                 }
                 .addOnFailureListener {
-                    tvDefinition.text = definitionInEnglish
+                    tvDefinition.text = "English:\n$definitionInEnglish"
                 }
         } else {
             tvDefinition.text = "Definisi tidak ditemukan."
         }
 
-
         val example = firstDefinition?.example
         if (!example.isNullOrEmpty()) {
             tvExample.visibility = View.VISIBLE
-            tvExample.text = "\"$example\""
+            tvExample.text = "Example:\n\"$example\""
         } else {
             tvExample.visibility = View.GONE
         }
